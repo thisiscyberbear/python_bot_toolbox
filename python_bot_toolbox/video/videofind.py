@@ -2,8 +2,15 @@ import cv2
 import numpy as np
 import pyautogui
 
-
+# Function to capture a video of the screen
+# @
 def recordScree_func():
+	# display screen resolution, get it from your OS settings
+	SCREEN_SIZE = (1920, 1080)
+	# define the codec
+	fourcc = cv2.VideoWriter_fourcc(*"XVID")
+	# create the video write object
+	out = cv2.VideoWriter("output.avi", fourcc, 20.0, (SCREEN_SIZE))
 	while True:
 		# make a screenshot
 		img = pyautogui.screenshot()
