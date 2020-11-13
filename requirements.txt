@@ -3,3 +3,5 @@ numpy
 python3_xlib
 pyautogui
 cv2
+imutils
+PIL
