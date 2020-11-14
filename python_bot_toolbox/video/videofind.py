@@ -6,11 +6,13 @@ from python_bot_toolbox.image import *
 # Function to capture a video of the screen
 # @monitor: Defines the monitor from which the video should be captured - Default=1
 def recordScreen_func(xcrop = -1, ycrop = -1, monitor = 1):
-	
+	# Get screen size
 	[screenWidth, screenHeight] = imagefind.getScreenSize()
-	# Take a screenshot
-	screen = imagefind.takeScreenshot_func(monitor = monitor)
-	#Just crop the middle of the screen
+	# Should the video be cropped
+	if xcrop != -1 and xcrop != -1:
+		screenWidth = 
+		screenHeight = 
+	
 	height, width, channels = screen.shape
 	crop_screen = screen[int((height/2)-200):int((height/2)+200), int((width/2)-200):int((width/2)+200)]
 	# display screen resolution, get it from your OS settings
@@ -27,7 +29,7 @@ def recordScreen_func(xcrop = -1, ycrop = -1, monitor = 1):
 		frame = np.array(img)
 		# Write frame to video writer
 		out.write(frame)
-		# if the user clicks q, it exits
+		# if the user clicks c, it exits
 		if cv2.waitKey(1) == ord("c"):
 			break
 
