@@ -5,3 +5,10 @@ pyautogui
 cv2
 imutils
 PIL
+keyboard
+time
+threading
+pynput
+logging
+datetime
+mss

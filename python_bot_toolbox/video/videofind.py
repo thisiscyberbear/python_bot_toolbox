@@ -1,29 +1,34 @@
 import cv2
 import numpy as np
 import pyautogui
+from python_bot_toolbox.image import *
 
 # Function to capture a video of the screen
-# @
-def recordScree_func():
+# @monitor: Defines the monitor from which the video should be captured - Default=1
+def recordScreen_func(xcrop = -1, ycrop = -1, monitor = 1):
+	
+	[screenWidth, screenHeight] = imagefind.getScreenSize()
+	# Take a screenshot
+	screen = imagefind.takeScreenshot_func(monitor = monitor)
+	#Just crop the middle of the screen
+	height, width, channels = screen.shape
+	crop_screen = screen[int((height/2)-200):int((height/2)+200), int((width/2)-200):int((width/2)+200)]
 	# display screen resolution, get it from your OS settings
+	
 	SCREEN_SIZE = (1920, 1080)
 	# define the codec
-	fourcc = cv2.VideoWriter_fourcc(*"XVID")
+	fourcc = cv2.VideoWriter_fourcc(*"mp4v")
 	# create the video write object
-	out = cv2.VideoWriter("output.avi", fourcc, 20.0, (SCREEN_SIZE))
+	out = cv2.VideoWriter("output.mp4", fourcc, 20.0, (SCREEN_SIZE))
 	while True:
-		# make a screenshot
-		img = pyautogui.screenshot()
-		# convert these pixels to a proper numpy array to work with OpenCV
+		# Make a screenshot
+		img = imagefind.takeScreenshot_func(color=cv2.COLOR_RGBA2RGB, monitor = monitor)
+		# Convert to numpy array
 		frame = np.array(img)
-		# convert colors from BGR to RGB
-		frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
-		# write the frame
+		# Write frame to video writer
 		out.write(frame)
-		# show the frame
-		cv2.imshow("screenshot", frame)
 		# if the user clicks q, it exits
-		if cv2.waitKey(1) == ord("q"):
+		if cv2.waitKey(1) == ord("c"):
 			break
 
 	# make sure everything is closed when exited
