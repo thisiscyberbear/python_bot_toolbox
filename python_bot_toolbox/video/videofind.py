@@ -5,11 +5,11 @@ from python_bot_toolbox.image import *
 
 # Function to capture a video of the screen
 # @monitor: Defines the monitor from which the video should be captured - Default=1
-def recordScreen_func(xcrop = -1, ycrop = -1, monitor = 1):
+def recordScreen_func(xcrop = (-1, -1), ycrop = (-1, -1), monitor = 1):
 	# Get screen size
 	[screenWidth, screenHeight] = imagefind.getScreenSize()
 	# Should the video be cropped
-	if xcrop != -1 and xcrop != -1:
+	if xcrop != (-1, -1) and ycrop != (-1, -1):
 		screenWidth = 
 		screenHeight = 
 	
