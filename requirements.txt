@@ -12,3 +12,4 @@ pynput
 logging
 datetime
 mss
+soundcard
