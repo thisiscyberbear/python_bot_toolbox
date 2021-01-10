@@ -218,17 +218,12 @@ def scaledImagefind_func(image, screen, scalefactor=10, alpha=False, useEdgeDete
 # @method: Detection method for the search - Default=cv2.TM_CCORR_NORMED
 # @threshold: Threshold for detecting an image - Default=0.9
 # @monitor: Defines the input monitor - Default=1
-def imagesfind_func(image, method=cv2.TM_CCOEFF_NORMED, threshold = 0.9, monitor = 1):
-	# Capture Screenshot
-	with mss() as sct:
-		screen = np.asarray(sct.grab(sct.monitors[monitor]))			
-	# Create an gray scale image
-	screen_gray = cv2.cvtColor(screen, cv2.COLOR_BGR2GRAY)
+def imagesfind_func(screen, image, method=cv2.TM_CCOEFF_NORMED, threshold = 0.9, monitor = 1):
 	# Compare input image with screenshot
-	result = cv2.matchTemplate(screen_gray, image, method)
+	result = cv2.matchTemplate(screen, image, method)
 	loc = np.where(result >= threshold)	
 	# DEBUG
-	# print(loc)
+	#print(loc)
 	w, h = image.shape[::-1]
 	for pt in zip(*loc[::-1]):
 		cv2.rectangle(screen, pt, (pt[0] + w, pt[1] + h), (0,0,255), 2)
